@@ -18,10 +18,7 @@ chmod +x build_and_push.sh
 ## 3. Run training
 
 ```bash
-python -m lerobot.scripts.train \
-  --config-name=act_pusht_real \
-  training.num_steps=20000 \
-  training.save_freq=2000
+lerobot-train --config-name=act_pusht_real --steps=20000 --save_freq=2000
 ```
 
 ### With W&B tracking
@@ -29,26 +26,19 @@ python -m lerobot.scripts.train \
 ```bash
 wandb login
 
-python -m lerobot.scripts.train \
-  --config-name=act_pusht_real \
-  training.num_steps=20000 \
-  training.save_freq=2000 \
-  wandb.enable=true \
-  wandb.project=lerobot-training
+lerobot-train --config-name=act_pusht_real --steps=20000 --save_freq=2000 --wandb.enable=true --wandb.project=lerobot-training
 ```
 
 ### With a private HuggingFace dataset
 
 ```bash
-huggingface-cli login
+hf auth login
 
-python -m lerobot.scripts.train \
-  --config-name=act_pusht_real \
-  dataset_repo_id=your-org/your-dataset
+lerobot-train --config-name=act_pusht_real --dataset_repo_id=your-org/your-dataset
 ```
 
 ## 4. Tips
 
 - Checkpoints are saved to `./outputs/train/<run_name>/checkpoints/` — mount a RunPod volume to persist them across restarts.
-- To resume a run: add `resume=true hydra.run.dir=./outputs/train/<your-run-name>`
-- List all available configs: `python -m lerobot.scripts.train --help`
+- To resume a run: add `--resume=true --hydra.run.dir=./outputs/train/<your-run-name>`
+- List all available configs: `lerobot-train --help`

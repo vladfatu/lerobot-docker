@@ -40,7 +40,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # resolution pass — no overwrite/reinstall of torch later.
 # lerobot[training] includes: accelerate, wandb, datasets,
 # pyarrow, torchcodec, av (everything needed for training runs).
-RUN pip install "lerobot[training]" \
+RUN pip install "lerobot[training,diffusion,wallx,pi,smolvla,multi_task_dit,groot,sarm,xvla,hilserl] @ git+https://github.com/huggingface/lerobot.git" \
     --extra-index-url https://download.pytorch.org/whl/cu126
 
 WORKDIR /workspace
