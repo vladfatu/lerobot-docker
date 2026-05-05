@@ -42,6 +42,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # pyarrow, torchcodec, av (everything needed for training runs).
 RUN pip install packaging setuptools wheel
 
+RUN pip install "torch>=2.7,<2.11.0" torchvision torchaudio \
+    --extra-index-url https://download.pytorch.org/whl/cu126
+
 RUN pip install "lerobot[training,diffusion,wallx,pi,smolvla,multi_task_dit,groot,sarm,xvla,hilserl]==0.5.1" \
     --extra-index-url https://download.pytorch.org/whl/cu126
 
