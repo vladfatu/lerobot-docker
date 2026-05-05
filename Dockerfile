@@ -45,6 +45,8 @@ RUN pip install packaging setuptools wheel
 RUN pip install "torch>=2.7,<2.11.0" torchvision torchaudio \
     --extra-index-url https://download.pytorch.org/whl/cu126
 
+RUN pip install flash-attn --find-links https://github.com/Dao-AILab/flash-attention/releases/expanded_assets/v2.8.3 --no-build-isolation
+
 RUN pip install "lerobot[training,diffusion,wallx,pi,smolvla,multi_task_dit,groot,sarm,xvla,hilserl]==0.5.1" \
     --extra-index-url https://download.pytorch.org/whl/cu126
 
